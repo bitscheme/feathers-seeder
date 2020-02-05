@@ -1,13 +1,13 @@
 import assert from 'assert';
 import feathers from '@feathersjs/feathers';
 import memory from 'feathers-memory';
-import seeder from '../lib';
+import seeder from '../src';
 
 describe('callback', () => {
   it('can nest config', done => {
     const app = feathers();
-    app.use('/albums', memory());
-    app.use('/songs', memory());
+    app.use('/albums', memory({ multi: true }));
+    app.use('/songs', memory({ multi: true }));
 
     app.use('/albums/:albumId/songs', {
       find(params) {

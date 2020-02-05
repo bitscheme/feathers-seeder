@@ -5,11 +5,13 @@
 
 Straightforward data seeder for FeathersJS services.
 
-* [About](#about)
-* [Installation](#installation)
-* [Configuration](#configuration)
-* [Example](#example)
-* [Thanks](#thanks)
+- [feathers-seeder](#feathers-seeder)
+- [About](#about)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Configuration](#configuration)
+- [Example](#example)
+- [Thanks](#thanks)
 
 # About
 FeathersJS is a dynamic application framework that makes it easy to prototype secure real-time Node applications.
@@ -157,7 +159,7 @@ const options = {
 };
 
 const app = feathers()
-              .use('/users', memory())
+              .use('/users', memory({ multi: true }))
               .configure(seeder(options));
 
 app.seed().then(() => {

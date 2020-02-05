@@ -1,7 +1,7 @@
 import assert from 'assert';
 import feathers from '@feathersjs/feathers';
 import memory from 'feathers-memory';
-import seeder from '../lib';
+import seeder from '../src';
 
 describe('feathers-seeder', () => {
   describe('custom-generator', () => {
@@ -18,7 +18,7 @@ describe('feathers-seeder', () => {
       };
 
       const app = feathers()
-        .use(`/dummy`, memory())
+        .use(`/dummy`, memory({ multi: true }))
         .configure(seeder(opts));
 
       app.seed().then(() => {

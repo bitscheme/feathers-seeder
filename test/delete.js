@@ -1,11 +1,11 @@
-var assert = require('assert');
-var feathers = require('@feathersjs/feathers');
-var memory = require('feathers-memory');
-var seeder = require('../lib');
+import assert from 'assert';
+import feathers from '@feathersjs/feathers';
+import memory from 'feathers-memory';
+import seeder from '../src';
 
 describe('deletions', function() {
   it('can disable deletions globally', function(done) {
-    const app = feathers().use('/dummy', memory());
+    const app = feathers().use('/dummy', memory({ multi: true }));
     const config = {
       delete: false,
       services: [
@@ -28,7 +28,9 @@ describe('deletions', function() {
   });
 
   it('can disable deletions locally', function(done) {
-    const app = feathers().use('/tickets', memory()).use('/artists', memory());
+    const app = feathers()
+      .use('/tickets', memory({ multi: true }))
+      .use('/artists', memory({ multi: true }));
     const config = {
       services: [
         {

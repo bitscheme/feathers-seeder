@@ -1,12 +1,12 @@
-var assert = require('assert');
-var errors = require('@feathersjs/errors');
-var feathers = require('@feathersjs/feathers');
-var memory = require('feathers-memory');
-var seeder = require('../lib');
+import assert from 'assert';
+import feathers from '@feathersjs/feathers';
+import errors from "@feathersjs/errors";
+import memory from 'feathers-memory';
+import seeder from '../src';
 
-describe('params', function() {
+describe('params', function() {  
   it('can pass custom params globally', function(done) {
-    const app = feathers().use('/dummy', memory());
+    const app = feathers().use('/dummy', memory({ multi: true }));
     const config = {
       params: {
         hello: 'world'
@@ -42,7 +42,7 @@ describe('params', function() {
   });
 
   it('can pass custom params locally', function(done) {
-    const app = feathers().use('/dummy', memory());
+    const app = feathers().use('/dummy', memory({ multi: true }));
     const config = {
       services: [
         {

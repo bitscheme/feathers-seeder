@@ -1,11 +1,11 @@
-var assert = require('assert');
-var feathers = require('@feathersjs/feathers');
-var memory = require('feathers-memory');
-var seeder = require('../lib');
+import assert from 'assert';
+import feathers from '@feathersjs/feathers';
+import memory from 'feathers-memory';
+import seeder from '../src';
 
 describe('disable', function() {
   it('can be globally disabled', function(done) {
-    const app = feathers().use('/dummy', memory());
+    const app = feathers().use('/dummy', memory({ multi: true }));
     const config =
     {
       disabled: true,
@@ -29,7 +29,9 @@ describe('disable', function() {
 
   it('can be disabled on an individual basis', function(done) {
     // /a will be disabled, while /b is enabled.
-    const app = feathers().use('/a', memory()).use('/b', memory());
+    const app = feathers()
+      .use('/a', memory({ multi: true }))
+      .use('/b', memory({ multi: true }));
     const config = {
       services:
       [
