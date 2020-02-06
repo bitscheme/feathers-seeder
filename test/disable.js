@@ -1,7 +1,7 @@
 import assert from 'assert';
 import feathers from '@feathersjs/feathers';
 import memory from 'feathers-memory';
-import seeder from '../src';
+import seeder from '../lib';
 
 describe('disable', function() {
   it('can be globally disabled', function(done) {

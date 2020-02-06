@@ -2,7 +2,7 @@ import assert from 'assert';
 import feathers from '@feathersjs/feathers';
 import errors from "@feathersjs/errors";
 import memory from 'feathers-memory';
-import seeder from '../src';
+import seeder from '../lib';
 
 describe('params', function() {  
   it('can pass custom params globally', function(done) {
