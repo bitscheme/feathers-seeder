@@ -9,7 +9,9 @@ describe('feathers-seeder', () => {
       const SINGLE = {
         path: 'single',
         template: {
-          name: '{{name.firstName}} {{name.lastName}}'
+          name: '{{name.firstName}} {{name.lastName}}',
+          profileMedium: `{{internet.avatar}}`,
+          password: '{{internet.password}}'
         }
       };
       const MULTIPLE = {
@@ -35,7 +37,6 @@ describe('feathers-seeder', () => {
           username: '{{internet.userName}}',
           age: 34,
           updatedAt: new Date(),
-          profileMedium: `https://dgalywyr863hv.cloudfront.net/pictures/athletes/411352/88294/1/medium.jpg`,
           active: true,
           location: {
             lat: 45.3455656,
@@ -45,7 +46,6 @@ describe('feathers-seeder', () => {
           username: '{{internet.userName}}',
           age: 33,
           updatedAt: new Date(),
-          profileMedium: `https://dgalywyr863hv.cloudfront.net/pictures/athletes/411352/88294/1/medium.jpg`,
           active: false,
           location: {
             lat: 45.3455656,
@@ -69,6 +69,9 @@ describe('feathers-seeder', () => {
       app.seed().then(() => {
         app.service(`${SINGLE.path}`).find().then(items => {
           assert.equal(items.length, 1);
+          assert.ok(items[0].profileMedium);
+          assert.ok(items[0].name);
+          assert.ok(items[0].password);
           console.log(`Seeded ${items.length}`);
         }).catch(done);
 
